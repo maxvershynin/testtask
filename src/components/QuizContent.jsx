@@ -48,29 +48,32 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const QuizContent2 = ({currentStep, currentGrade, setGrade, gradeSummary}) => {
+
+    React.useEffect(()=>{
+        var sum = 0;
+        for(var i = 0; i < gradeSummary.length; i++){
+            sum += gradeSummary[i];
+        }
+        setGrade(sum)
+    },[currentStep])
       
         const classes = useStyles();
         const [value, setValue] = React.useState('');
         const [error, setError] = React.useState(false);
-        const [helperText, setHelperText] = React.useState('Choose wisely');
       
         const handleRadioChange = (event) => {
           setValue(event.target.value);
-          setHelperText(' ');
           setError(false);
         };
       
         const handleSubmit = (event) => {
           event.preventDefault();
       
-          if (value === 'best') {
-            setHelperText('You got it!');
-            setError(false);
+          if (value) {
+            gradeSummary[currentStep-1]= value
           } else if (value === 'worst') {
-            setHelperText('Sorry, wrong answer!');
             setError(true);
           } else {
-            setHelperText('Please select an option.');
             setError(true);
           }
         };
@@ -78,25 +81,16 @@ const QuizContent2 = ({currentStep, currentGrade, setGrade, gradeSummary}) => {
         const elements = [];
 
         for(let i =0; i<=100; i+=20){
-            elements.push(<form onSubmit={handleSubmit}>
-                   <FormControl component="fieldset" error={error} className={classes.formControl}>
-                     <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
-                     <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
-                       <FormControlLabel value="20" control={<Radio />} label="grade" onClick={()=>console.log('asdf')}/>
-                     </RadioGroup>
-                     <FormHelperText>{helperText}</FormHelperText>
-                     <Button type="submit" variant="outlined" color="primary" className={classes.button}>
-                       Check Answer
-                     </Button>
-                   </FormControl>
-                 </form>)
+            elements.push(<FormControlLabel value={`${i}`} control={<Radio />} label={`${i} grade`} onClick={()=>console.log(gradeSummary)}/>)
         }
         return (
         <>
-            <header>{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` : `question number ${currentStep}`}</header>
-            <ul>
+            <FormControl component="fieldset" error={error} className={classes.formControl}>
+                <FormLabel component="legend">{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` : `question number ${currentStep}`}</FormLabel>
+                <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
                 {elements.map(element=>element)}
-            </ul>
+                </RadioGroup>
+            </FormControl>
             <footer>{currentGrade}</footer>
         </>);
 
