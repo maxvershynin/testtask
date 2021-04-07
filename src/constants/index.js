@@ -1,3 +1,5 @@
 const quizQuestionsAmount = 5;
+const quizMaxGrade = 100;
+const quizAnswersAmount = 5;
 
-export default quizQuestionsAmount;
+export {quizQuestionsAmount,quizMaxGrade,quizAnswersAmount};

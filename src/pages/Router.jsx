@@ -5,9 +5,11 @@ import {
   QuizPage,
   ResultPage
 } from "./index";
-
+import {quizQuestionsAmount} from "../constants/index";
 
 const AppRouter = (props) => {
+  const arrayGradesAnsweredQuestion = Array(quizQuestionsAmount).fill(0);
+
   return (
     <Router>
       <Route>{({ location, history }) => {
@@ -21,7 +23,7 @@ const AppRouter = (props) => {
           <Switch>
               <Redirect from='/' exact to={'/welcome'} />
               <Route path='/welcome' component={WelcomePage} />
-              <Route path='/quiz' component={QuizPage} />
+              <Route path='/quiz' component={()=><QuizPage array = {arrayGradesAnsweredQuestion}/>} />
               <Route path='/result' component={ResultPage} />
           </Switch>
         )
