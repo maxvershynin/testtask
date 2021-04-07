@@ -24,11 +24,11 @@ const QuizPage = ({array}) => {
 
     return (
         <div className='quiz_page'>
-            <div>quiz</div>
+            <header>quiz</header>
             <QuizContent currentStep = {step} arrayGradesAnsweredQuestion = {array} error={error} />
-            <button onClick={onBackClick} disabled={step===1}>back</button>
-            {step < quizQuestionsAmount && <button onClick={()=>onNextStep(step)}>next</button>}
-            {step === quizQuestionsAmount && <button><Link to="/result" className="btn btn-primary">Done</Link></button>}
+            <button  className={"secondary"}  onClick={onBackClick} disabled={step===1}>back</button>
+            {step < quizQuestionsAmount && <button className={"primary"} onClick={()=>onNextStep(step)}>next</button>}
+            {step === quizQuestionsAmount && <button className={"primary"}><Link to="/result" >Done</Link></button>}
         </div>
     )
 };

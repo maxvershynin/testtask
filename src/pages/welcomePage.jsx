@@ -7,7 +7,7 @@ const WelcomePage = (props) => {
         <div className='welcome_page'>
             <header>Hello, we are going to make a quick quiz</header>
             <p>Click on the button </p>
-            <Link to="/quiz" className="btn btn-primary"><button>Let`s start</button></Link>
+            <Link to="/quiz" className="btn btn-primary"><button><b>Let`s start</b></button></Link>
         </div>
     )
 };

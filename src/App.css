@@ -13,6 +13,47 @@
   color: white;
 }
 
-.welcome_page {
-  
+.welcome_page b{
+  color: red;
+  font-size: 40px;
+}
+
+.welcome_page header{
+  background-color: yellow;
+  font-size: 30px;
+}
+
+.welcome_page p{
+  font-size: large;
+}
+.quiz_page header {
+  background-color: brown;
+  font-size: 50px;
+}
+.quiz_page button {
+  padding: 10px;
+  font-size: 18px;
+  margin: 40px 69px;
+}
+.result_page b{
+  color: red;
+  font-size: 40px;
+}
+
+.result_page header{
+  background-color: yellow;
+  font-size: 30px;
+}
+
+.result_page span{
+  font-size: large;
+}
+
+/* //////////// */
+
+button.primary {
+  background-color: goldenrod;
+}
+button.secondary {
+  background-color: gray;
 }
