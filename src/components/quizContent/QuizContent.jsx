@@ -106,22 +106,17 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
       
         const classes = useStyles();
 
-        const handleSubmit = (event) => {
-          event.preventDefault();
-      
-        };
-
         return (
         <>
             <FormControl component="fieldset"  className={classes.formControl}> {/*error={error}*/}
                 <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
                 <DynamicQuestions step = {currentStep}/>
 
-                {arrayGradesAnsweredQuestion[currentStep-1] && (<FormLabel>
+                {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
                   Choose another option once you changed your mind or leave it with current value ==> <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
                 </FormLabel>)}
             </FormControl>
-            <footer>{"grade"}</footer>
+            <footer>summary grade == {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
         </>);
 
 
