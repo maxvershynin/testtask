@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const WelcomePage = (props) => {
@@ -7,7 +7,7 @@ const WelcomePage = (props) => {
         <div className='welcome_page'>
             <header>Hello, we are going to make a quick quiz</header>
             <p>Click on the button </p>
-            <button><Link to="/quiz" className="btn btn-primary">Let`s start</Link></button>
+            <Link to="/quiz" className="btn btn-primary"><button>Let`s start</button></Link>
         </div>
     )
 };

@@ -8,7 +8,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -19,58 +18,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const QuizContent = ({currentStep, currentGrade, setGrade, gradeSummary}) => {
-//     console.log("gradeSummary",gradeSummary)
-//     React.useEffect(()=>{
-//         var sum = 0;
-//         for(var i = 0; i < gradeSummary.length; i++){
-//             sum += gradeSummary[i];
-//         }
-//         setGrade(sum)
-//     },[currentStep])
-
-//     const elements = []
-  
-//     for(let i =0; i<=100; i+=20){
-//         elements.push(<li>
-//         <span>{i} grade</span>
-//         <input type={"checkbox"} selected = {false} onClick={()=>gradeSummary[currentStep] = i}></input>
-//      </li>)
-//     }
-//     return (
-//     <>
-//         <header>{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` : `question number ${currentStep}`}</header>
-//         <ul>
-//             {elements.map(element=>element)}
-//         </ul>
-//         <footer>{currentGrade}</footer>
-//     </>);
-// }
-
-// const useStyles = makeStyles((theme) => ({
-//     formControl: {
-//       margin: theme.spacing(3),
-//     },
-//     button: {
-//       margin: theme.spacing(1, 1, 0, 0),
-//     },
-//   }));
-
-
 
 const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
 
   console.log("error",error)
-
-  console.log("arrayGradesAnsweredQuestion",arrayGradesAnsweredQuestion)
-
-  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
-////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////
-    ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
+  console.log("arrayGradesAnsweredQuestion",arrayGradesAnsweredQuestion)  
 
   const DynamicQuestions = ({step}) => {
+    ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
     const PollExampleRadio = () => {
       const arrayAnswers = [];
       for(let i =0; i<=quizMaxGrade; i+=quizMaxGrade/quizAnswersAmount){
@@ -78,10 +33,12 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
       }
       return arrayAnswers
     }
+    ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
     
     const [value, setValue] = React.useState();
+    const classes = useStyles();
   
-    const handleMyChange = (event,questionNumber) =>{
+    const handleMyChange = (event,questionNumber) => {
       setValue(event.target.value); 
       console.log("questionNumber",questionNumber);
       arrayGradesAnsweredQuestion[questionNumber-1]= event.target.value;
@@ -89,7 +46,6 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
     }
 
     const arraysQuizBlocks = []
-
     for(let i =0; i<=quizMaxGrade; i+=quizMaxGrade/quizQuestionsAmount){
       let questionNumber = 0
       if (i !==0) {
@@ -100,30 +56,22 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
           <PollExampleRadio/> 
         </RadioGroup>)
     }
-
-    console.log("step",step)
     return arraysQuizBlocks[step];
   }
-  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
-      
-        const classes = useStyles();
 
+  return (
+  <>
+      <FormControl component="legend"  className={classes.formControl}> 
+          <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
+          <DynamicQuestions step = {currentStep}/>
 
-        return (
-        <>
-            <FormControl component="legend"  className={classes.formControl}> 
-                <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
-                <DynamicQuestions step = {currentStep}/>
-
-                {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
-                  Choose another option once you changed your mind or leave it with <b style={{color: "red"}}>current value</b> ==&gt; <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
-                </FormLabel>)}
-                {error && <FormHelperText error={error}>{"CHOOSE OPTION!!! NEXT QUESTION IS NOT ALLOWED."}</FormHelperText> }
-            </FormControl>
-            <footer>summary grade ==&gt; {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
-        </>);
-
-
+          {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
+            Choose another option once you changed your mind or leave it with <b style={{color: "red"}}>current value</b> ==&gt; <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
+          </FormLabel>)}
+          {error && <FormHelperText error={error}>{"CHOOSE OPTION!!! NEXT QUESTION IS NOT ALLOWED."}</FormHelperText> }
+      </FormControl>
+      <footer>summary grade ==&gt; {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
+  </>);
 }
 
 
