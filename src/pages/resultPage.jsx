@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ResultPage = (props) => {
-    const [step, setStep] = useState('Welcome');
 
-    const onNextStep = () => setStep('Reset');
-
-    const onBackClick = () => setStep('Welcome');
-
+    const grade = localStorage.getItem("userGrade");
     return (
         <div className='result_page'>
-            <div>ResultPage</div>
+            <div>ResultPage {grade}</div>
+            
         </div>
     )
 };

@@ -82,8 +82,7 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
       setValue(event.target.value); 
       console.log("questionNumber",questionNumber);
       arrayGradesAnsweredQuestion[questionNumber-1]= event.target.value;
-
-      
+      localStorage.setItem("userGrade", arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b)));      
     }
 
     const arraysQuizBlocks = []
@@ -106,6 +105,7 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
       
         const classes = useStyles();
 
+
         return (
         <>
             <FormControl component="fieldset"  className={classes.formControl}> {/*error={error}*/}
@@ -113,10 +113,10 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
                 <DynamicQuestions step = {currentStep}/>
 
                 {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
-                  Choose another option once you changed your mind or leave it with current value ==> <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
+                  Choose another option once you changed your mind or leave it with <b style={{color: "red"}}>current value</b> ==&gt; <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
                 </FormLabel>)}
             </FormControl>
-            <footer>summary grade == {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
+            <footer>summary grade ==&gt; {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
         </>);
 
 

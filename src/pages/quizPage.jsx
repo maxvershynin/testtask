@@ -14,12 +14,14 @@ const QuizPage = ({array}) => {
     const onNextStep = () => {setStep(prevStep => prevStep+1);}
 
     const finishQuiz = () => {
-        // localStorage.setItem({userGrade: grade})
-       return <button><Link to="/result" className="btn btn-primary">Done</Link></button>
+        //setStep(prevStep => prevStep+1)
+        localStorage.setItem("userGrade", array.reduce((a, b) => parseInt(a) + parseInt(b)));
+        return <button><Link to="/result" className="btn btn-primary">Done</Link></button>
         
     };
-    // console.log("step",step)
+     console.log("step",step)
     // console.log("gradeSummary",gradeSummary)
+    console.log("array",array)
 
 
     return (
