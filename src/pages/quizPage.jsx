@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {quizQuestionsAmount} from "../constants/index";
+import { dataObj } from "../constants/index";
 import { Link } from 'react-router-dom';
 
 import QuizContent from "../components/quizContent/main"
@@ -27,8 +27,8 @@ const QuizPage = ({array}) => {
             <header>quiz</header>
             <QuizContent currentStep = {step} arrayGradesAnsweredQuestion = {array} error={error} />
             <button  className={"secondary"}  onClick={onBackClick} disabled={step===1}>back</button>
-            {step < quizQuestionsAmount && <button className={"primary"} onClick={()=>onNextStep(step)}>next</button>}
-            {step === quizQuestionsAmount && <button className={"primary"}><Link to="/result" >Done</Link></button>}
+            {step < dataObj.quizQuestionsAmount && <button className={"primary"} onClick={()=>onNextStep(step)}>next</button>}
+            {step === dataObj.quizQuestionsAmount && <button className={"primary"}><Link to="/result" >Done</Link></button>}
         </div>
     )
 };

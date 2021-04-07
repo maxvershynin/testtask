@@ -5,10 +5,10 @@ import {
   QuizPage,
   ResultPage
 } from "./index";
-import {quizQuestionsAmount} from "../constants/index";
+import { dataObj } from "../constants/index";
 
 const AppRouter = (props) => {
-  const arrayGradesAnsweredQuestion = Array(quizQuestionsAmount).fill(0);
+  const arrayGradesAnsweredQuestion = Array(dataObj.quizQuestionsAmount).fill(0);
 
   return (
     <Router>

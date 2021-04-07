@@ -7,7 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 
 import PollExampleRadio from "./AnswersRadioComponents"
-import { quizQuestionsAmount, quizMaxGrade, quizAnswersAmount } from "../../constants/index";
+import { dataObj } from "../../constants/index";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -32,10 +32,10 @@ const QuizContent = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
     }
 
     const arraysQuizBlocks = []
-    for(let i =0; i<=quizMaxGrade; i+=quizMaxGrade/quizQuestionsAmount){
+    for(let i =0; i<=dataObj.quizMaxGrade; i+=dataObj.quizMaxGrade/dataObj.quizQuestionsAmount){
       let questionNumber = 0
       if (i !==0) {
-        questionNumber = i/(quizMaxGrade/quizQuestionsAmount);
+        questionNumber = i/(dataObj.quizMaxGrade/dataObj.quizQuestionsAmount);
       }
       arraysQuizBlocks.push(
         <RadioGroup aria-label="quiz" value = {value} onChange={event => handleMyChange(event,questionNumber)} name={`quiz_question#${questionNumber}`} > 
@@ -48,7 +48,7 @@ const QuizContent = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
   return (
   <>
       <FormControl component="legend"  className={classes.formControl}> 
-          <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
+          <FormLabel >{currentStep === dataObj.quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
           <DynamicQuestions step = {currentStep} array ={arrayGradesAnsweredQuestion}/>
 
           {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
