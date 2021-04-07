@@ -6,8 +6,8 @@ const ResultPage = (props) => {
     const grade = localStorage.getItem("userGrade");
     return (
         <div className='result_page'>
-            <div>ResultPage {grade}</div>
-            
+            <div>ResultPage </div>
+            <div>USER`S GRADE ==&gt; {grade}</div>
         </div>
     )
 };

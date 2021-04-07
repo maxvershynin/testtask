@@ -58,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
+const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion, error}) => {
+
+  console.log("error",error)
+
   console.log("arrayGradesAnsweredQuestion",arrayGradesAnsweredQuestion)
 
   ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
@@ -108,13 +111,14 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
 
         return (
         <>
-            <FormControl component="fieldset"  className={classes.formControl}> {/*error={error}*/}
+            <FormControl component="legend"  className={classes.formControl}> 
                 <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
                 <DynamicQuestions step = {currentStep}/>
 
                 {arrayGradesAnsweredQuestion[currentStep-1] !==0 && (<FormLabel>
                   Choose another option once you changed your mind or leave it with <b style={{color: "red"}}>current value</b> ==&gt; <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
                 </FormLabel>)}
+                {error && <FormHelperText error={error}>{"CHOOSE OPTION!!! NEXT QUESTION IS NOT ALLOWED."}</FormHelperText> }
             </FormControl>
             <footer>summary grade ==&gt; {arrayGradesAnsweredQuestion.reduce((a, b) => parseInt(a) + parseInt(b))}</footer>
         </>);
