@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
-  console.log(arrayGradesAnsweredQuestion)
+  console.log("arrayGradesAnsweredQuestion",arrayGradesAnsweredQuestion)
 
   ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
 ////////////////////////////////////////////////////////////
@@ -104,19 +104,22 @@ const QuizContent2 = ({currentStep, arrayGradesAnsweredQuestion}) => {
   }
   ///////////////////////////// IMPORT  ///////////////////////////// IMPORT  ///////////////////////////// IMPORT
       
-         const classes = useStyles();
+        const classes = useStyles();
 
         const handleSubmit = (event) => {
           event.preventDefault();
       
-         
         };
 
         return (
         <>
             <FormControl component="fieldset"  className={classes.formControl}> {/*error={error}*/}
-                <FormLabel component="legend">{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` : `question number ${currentStep}`}</FormLabel>
+                <FormLabel >{currentStep === quizQuestionsAmount ? `The last Question, then go to Result by Clicking on "Done" button` :`question number ${currentStep}`}</FormLabel>
                 <DynamicQuestions step = {currentStep}/>
+
+                {arrayGradesAnsweredQuestion[currentStep-1] && (<FormLabel>
+                  Choose another option once you changed your mind or leave it with current value ==> <b>{arrayGradesAnsweredQuestion[currentStep-1]} grade</b>
+                </FormLabel>)}
             </FormControl>
             <footer>{"grade"}</footer>
         </>);
